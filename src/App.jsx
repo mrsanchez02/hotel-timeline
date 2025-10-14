@@ -335,7 +335,7 @@ function App() {
       // Customize the appearance of room headers
       onBeforeRowHeaderRender: args => {
         // Use remote data if available, otherwise fallback to local data
-        const roomsSource = roomsData.length > 0 ? roomsData : rooms;
+        const roomsSource = roomsData.length > 0 ? roomsData : [];
         const room = roomsSource.find(r => r.id === args.row.id);
         
         if (room) {
