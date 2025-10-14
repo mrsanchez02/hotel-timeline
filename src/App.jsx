@@ -44,8 +44,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const startDate = currentDate.toString('MM-dd-yyyy');
-    const endDate = currentDate.addDays(28).toString('MM-dd-yyyy'); // 4 weeks
+    // Calcular el primer y último día del mes para asegurar que se cargen todos los datos del mes
+    const startDate = currentDate.firstDayOfMonth().toString('MM-dd-yyyy');
+    const endDate = currentDate.firstDayOfMonth().addMonths(1).addDays(-1).toString('MM-dd-yyyy');
     bindDataRemote({ startDate, endDate });
     
     return () => {
@@ -58,7 +59,7 @@ function App() {
   useEffect(() => {
     if (view === 'Year') {
       const startDate = currentDate.firstDayOfYear().toString('MM-dd-yyyy');
-      const endDate = currentDate.firstDayOfYear().addDays(365).toString('MM-dd-yyyy');
+      const endDate = currentDate.firstDayOfYear().addYears(1).addDays(-1).toString('MM-dd-yyyy');
       bindDataRemote({ startDate, endDate });
     }
   }, [view])
