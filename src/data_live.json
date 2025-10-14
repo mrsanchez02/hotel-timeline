@@ -1,0 +1,127 @@
+[
+  {
+    "JSONData": [
+      {
+        "rooms": {
+          "rooms": [
+            {
+              "text": "Test1",
+              "id": 163,
+              "color": "#ffffff",
+              "backgroundColor": "#228B22",
+              "roomType": "TR1",
+              "roomColorStatus": "OC - Occupied Clean"
+            },
+            {
+              "text": "Test10",
+              "id": 172,
+              "color": "#ffffff",
+              "backgroundColor": "#CC3300",
+              "roomType": "TR2",
+              "roomColorStatus": "OD - Occupied Dirty"
+            },
+            {
+              "text": "Test11",
+              "id": 173,
+              "color": "#000000",
+              "backgroundColor": "#FF7F7F",
+              "roomType": "TR1",
+              "roomColorStatus": "VD - Vacant Dirty"
+            },
+            {
+              "text": "Test12",
+              "id": 174,
+              "color": "#000000",
+              "backgroundColor": "#FF7F7F",
+              "roomType": "TR1",
+              "roomColorStatus": "VD - Vacant Dirty"
+            },
+            {
+              "text": "Test2",
+              "id": 164,
+              "color": "#000000",
+              "backgroundColor": "#FF7F7F",
+              "roomType": "TR1",
+              "roomColorStatus": "VD - Vacant Dirty"
+            },
+            {
+              "text": "Test3",
+              "id": 165,
+              "color": "#000000",
+              "backgroundColor": "#FF7F7F",
+              "roomType": "TR2",
+              "roomColorStatus": "VD - Vacant Dirty"
+            },
+            {
+              "text": "Test4",
+              "id": 166,
+              "color": "#000000",
+              "backgroundColor": "#FF7F7F",
+              "roomType": "TR2",
+              "roomColorStatus": "VD - Vacant Dirty"
+            },
+            {
+              "text": "Test5",
+              "id": 167,
+              "color": "#000000",
+              "backgroundColor": "#FF7F7F",
+              "roomType": "TR2",
+              "roomColorStatus": "VD - Vacant Dirty"
+            },
+            {
+              "text": "Test6",
+              "id": 168,
+              "color": "#000000",
+              "backgroundColor": "#FF7F7F",
+              "roomType": "TR2",
+              "roomColorStatus": "VD - Vacant Dirty"
+            },
+            {
+              "text": "Test7",
+              "id": 169,
+              "color": "#ffffff",
+              "backgroundColor": "#CC3300",
+              "roomType": "TR2",
+              "roomColorStatus": "OD - Occupied Dirty"
+            },
+            {
+              "text": "Test8",
+              "id": 170,
+              "color": "#ffffff",
+              "backgroundColor": "#CC3300",
+              "roomType": "TR2",
+              "roomColorStatus": "OD - Occupied Dirty"
+            },
+            {
+              "text": "Test9",
+              "id": 171,
+              "color": "#000000",
+              "backgroundColor": "#FF7F7F",
+              "roomType": "TR2",
+              "roomColorStatus": "VD - Vacant Dirty"
+            }
+          ]
+        },
+        "dataChart": {
+          "dataChart": [
+            {
+              "text": "testing testing",
+              "suitedId": 172,
+              "startDate": "2025-08-13",
+              "endDate": "2025-08-17",
+              "room": "Test10",
+              "reservationTextColor": "#003366",
+              "reservationColor": "#99ccff",
+              "reservationStatus": "Partial Check-In",
+              "ReservationCode": "P",
+              "GUID": "32A40739-9F0A-47E6-AB9E-74D038674170",
+              "ArrivalDate": "2025-08-13",
+              "DepartureDate": "2025-08-17",
+              "IdRoom": 172
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

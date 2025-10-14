@@ -7,6 +7,54 @@
   background: white;
 }
 
+/* Room header customization */
+.scheduler-container .daypilot_scheduler_rowheader {
+  transition: all 0.2s ease;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.scheduler-container .daypilot_scheduler_rowheader:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Enhanced room header styling */
+.scheduler-container .daypilot_scheduler_rowheader_inner {
+  min-height: 60px;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative;
+}
+
+/* Room text styling */
+.scheduler-container .daypilot_scheduler_rowheader > div {
+  transition: all 0.2s ease-in-out;
+  border-radius: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.scheduler-container .daypilot_scheduler_rowheader:hover > div {
+  filter: brightness(1.1);
+}
+
+/* Remove any default padding from DayPilot row headers */
+.scheduler-container .daypilot_scheduler_rowheader_cell {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.scheduler-container .daypilot_scheduler_rowheader_cell_inner {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 /* Custom Bootstrap overrides for better integration */
 .badge {
   font-size: 0.8rem;

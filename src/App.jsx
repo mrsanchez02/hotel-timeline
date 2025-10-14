@@ -11,6 +11,8 @@ import { Legend, ReservationModal, Toolbar } from './components';
 // Import data and hooks
 import { rooms, statuses } from './data/constants';
 import { useReservations } from './hooks/useReservations';
+import { formatDateForInput, getStatusVariant, getCurrentRoomStatus, getRoomTypeDisplay, getStatusColor, getBorderColor } from './utils/helpers';
+import { getRoomDisplayText } from './utils/dataProcessor';
 
 function App() {
   // Use custom hook for reservations management
@@ -20,13 +22,15 @@ function App() {
     isModalOpen,
     modalMode,
     formData,
+    currentDate,
     openModal,
     closeModal,
     handleInputChange,
     handleSave,
     handleEventClick,
     handleEventMoved,
-    handleEventResized
+    handleEventResized,
+    handleDateChange
   } = useReservations();
 
   // The view can be Day, Week, Month or Year. Changing the view updates
@@ -43,7 +47,24 @@ function App() {
     let days;
     let scale;
     let timeHeaders;
-    const startDate = DayPilot.Date.today().firstDayOfMonth();
+    let startDate;
+
+    switch (view) {
+      case "Day":
+        startDate = currentDate;
+        break;
+      case "Week":
+        startDate = currentDate.firstDayOfWeek();
+        break;
+      case "Month":
+        startDate = currentDate.firstDayOfMonth();
+        break;
+      case "Year":
+        startDate = currentDate.firstDayOfYear();
+        break;
+      default:
+        startDate = currentDate.firstDayOfMonth();
+    }
     switch (view) {
       case "Day":
         days = 1;
@@ -90,7 +111,13 @@ function App() {
       scale,
       days,
       startDate,
-      resources: rooms.map(r => ({ id: r.id, name: r.name })),
+      resources: rooms.map(r => ({ 
+        id: r.id, 
+        name: r.name,
+        type: r.type,
+        floor: r.floor,
+        currentStatus: r.currentStatus
+      })),
       events: bookings.map(ev => ({
         id: ev.id,
         resource: ev.resource,
@@ -98,8 +125,10 @@ function App() {
         end: ev.end,
         text: ev.text,
         status: ev.status,
-        backColor: statuses[ev.status]?.color || "#03a9f4",
-        barColor: statuses[ev.status]?.color || "#03a9f4"
+        backColor: ev.backColor || "#99ccff",
+        textColor: ev.textColor || "#003366",
+        reservationCode: ev.reservationCode,
+        guestName: ev.guestName
       })),
       // Update booking when it is moved (drag and drop)
       onEventMoved: handleEventMoved,
@@ -107,11 +136,49 @@ function App() {
       onEventResized: handleEventResized,
       // Customize the appearance before rendering each booking
       onBeforeEventRender: args => {
-        const statusKey = args.data.status;
-        if (statusKey && statuses[statusKey]) {
-          args.data.backColor = statuses[statusKey].color;
-          args.data.barColor = statuses[statusKey].color;
-          args.data.toolTip = `${args.data.text} (${statuses[statusKey].text})`;
+        // Use colors from the reservation data (dataChart)
+        if (args.data.backColor) {
+          args.data.backColor = args.data.backColor;
+        }
+        if (args.data.textColor) {
+          args.data.color = args.data.textColor;
+        }
+        args.data.toolTip = `${args.data.text} (${args.data.status || 'Reserva'})`;
+      },
+      // Customize the appearance of room headers
+      onBeforeRowHeaderRender: args => {
+        const room = rooms.find(r => r.id === args.row.id);
+        if (room) {
+          // Use the backgroundColor and textColor from the JSON data
+          const backgroundColor = room.backgroundColor || '#cccccc';
+          const textColor = room.textColor || '#ffffff';
+          const displayText = getRoomDisplayText(room);
+          
+          args.row.html = `
+            <div style="
+              margin: 0;
+              padding: 0; 
+              height: 100%; 
+              width: 100%;
+              display: flex; 
+              align-items: center;
+              justify-content: center;
+              background-color: ${backgroundColor};
+              color: ${textColor};
+              font-weight: 600;
+              font-size: 14px;
+              text-align: center;
+              text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+              box-sizing: border-box;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+            ">
+              ${displayText}
+            </div>
+          `;
         }
       }
     };
@@ -134,16 +201,16 @@ function App() {
         </Col>
       </Row>
       
-      <Toolbar
-        view={view}
-        onViewChange={setView}
-        onNewReservation={() => openModal('new')}
-        selectedReservation={selectedReservation}
-        onViewReservation={() => openModal('view', selectedReservation)}
-        onEditReservation={() => openModal('edit', selectedReservation)}
-      />
-
-      <Row>
+          <Toolbar
+            view={view}
+            onViewChange={setView}
+            onNewReservation={() => openModal('new')}
+            selectedReservation={selectedReservation}
+            onViewReservation={() => openModal('view', selectedReservation)}
+            onEditReservation={() => openModal('edit', selectedReservation)}
+            currentDate={currentDate}
+            onDateChange={handleDateChange}
+          />      <Row>
         <Col>
           <div className="scheduler-container">
             <DayPilotScheduler

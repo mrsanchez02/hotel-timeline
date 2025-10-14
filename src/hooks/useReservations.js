@@ -9,6 +9,9 @@ export const useReservations = () => {
   // State for bookings
   const [bookings, setBookings] = useState(initialBookings);
   
+  // State for date navigation - start in August 2025 where the reservation is
+  const [currentDate, setCurrentDate] = useState(new DayPilot.Date("2025-08-01"));
+  
   // State for modal and form management
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -116,6 +119,11 @@ export const useReservations = () => {
     ));
   };
 
+  // Handle date change
+  const handleDateChange = (newDate) => {
+    setCurrentDate(newDate);
+  };
+
   return {
     // State
     bookings,
@@ -123,6 +131,7 @@ export const useReservations = () => {
     isModalOpen,
     modalMode,
     formData,
+    currentDate,
     
     // Actions
     openModal,
@@ -132,6 +141,7 @@ export const useReservations = () => {
     handleEventClick,
     handleEventMoved,
     handleEventResized,
+    handleDateChange,
     setBookings
   };
 };
