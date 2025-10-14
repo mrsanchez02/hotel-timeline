@@ -248,7 +248,7 @@ function App() {
         textColor: r.color || r.textColor
       })),
       events: reservationsData.map(ev => {
-        console.log("🚀 ~ computeSchedulerConfig ~ ev:", ev);
+        // console.log("🚀 ~ computeSchedulerConfig ~ ev:", ev);
         
         const eventConfig = {
           id: ev.id,
@@ -265,14 +265,14 @@ function App() {
           guestName: ev.guestName
         };
         
-        console.log("🎨 ~ Final event config:", {
-          id: eventConfig.id,
-          text: eventConfig.text,
-          backColor: eventConfig.backColor,
-          textColor: eventConfig.textColor,
-          color: eventConfig.color,
-          fontColor: eventConfig.fontColor
-        });
+        // console.log("🎨 ~ Final event config:", {
+        //   id: eventConfig.id,
+        //   text: eventConfig.text,
+        //   backColor: eventConfig.backColor,
+        //   textColor: eventConfig.textColor,
+        //   color: eventConfig.color,
+        //   fontColor: eventConfig.fontColor
+        // });
         
         return eventConfig;
       }),
@@ -288,14 +288,14 @@ function App() {
       onEventResized: handleEventResized,
       // Customize the appearance before rendering each booking
       onBeforeEventRender: args => {
-        console.log("� BEFORE EVENT RENDER - Initial:", {
-          id: args.data.id,
-          text: args.data.text,
-          backColor: args.data.backColor,
-          textColor: args.data.textColor,
-          color: args.data.color,
-          fontColor: args.data.fontColor
-        });
+        // console.log("� BEFORE EVENT RENDER - Initial:", {
+        //   id: args.data.id,
+        //   text: args.data.text,
+        //   backColor: args.data.backColor,
+        //   textColor: args.data.textColor,
+        //   color: args.data.color,
+        //   fontColor: args.data.fontColor
+        // });
         
         // Use colors from the reservation data (dataChart)
         if (args.data.backColor) {
@@ -316,19 +316,19 @@ function App() {
           args.html = `<div style="color: ${args.data.textColor} !important; height: 100%; display: flex; align-items: center; padding: 0 5px;">${args.data.text}</div>`;
         }
         
-        console.log("🔥 BEFORE EVENT RENDER - Final:", {
-          id: args.data.id,
-          text: args.data.text,
-          backColor: args.data.backColor,
-          textColor: args.data.textColor,
-          color: args.data.color,
-          fontColor: args.data.fontColor,
-          foreColor: args.data.foreColor
-        });
+        // console.log("🔥 BEFORE EVENT RENDER - Final:", {
+        //   id: args.data.id,
+        //   text: args.data.text,
+        //   backColor: args.data.backColor,
+        //   textColor: args.data.textColor,
+        //   color: args.data.color,
+        //   fontColor: args.data.fontColor,
+        //   foreColor: args.data.foreColor
+        // });
         
-        if (args.html) {
-          console.log("🎨 CUSTOM HTML:", args.html);
-        }
+        // if (args.html) {
+          // console.log("🎨 CUSTOM HTML:", args.html);
+        // }
         
         args.data.toolTip = `${args.data.text} (${args.data.status || 'Reserva'})`;
       },
