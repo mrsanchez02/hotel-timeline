@@ -1,0 +1,105 @@
+/* Styles specific to the reservation scheduler component */
+.scheduler-container {
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  background: white;
+}
+
+/* Custom Bootstrap overrides for better integration */
+.badge {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+/* Enhanced header styling */
+.text-primary {
+  color: #0d6efd !important;
+  font-weight: 600;
+}
+
+/* Form enhancements */
+.form-select, .form-control {
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-select:focus, .form-control:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Button enhancements */
+.btn {
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn i {
+  font-size: 0.9em;
+}
+
+/* Badge status colors to match the scheduler */
+.badge.bg-danger {
+  background-color: #f44336 !important;
+}
+
+.badge.bg-success {
+  background-color: #4caf50 !important;
+}
+
+.badge.bg-primary {
+  background-color: #2196f3 !important;
+}
+
+.badge.bg-warning {
+  background-color: #ffeb3b !important;
+  color: #212529 !important;
+}
+
+.badge.bg-secondary {
+  background-color: #9e9e9e !important;
+}
+
+/* Modal enhancements */
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+  font-weight: 600;
+  color: #495057;
+}
+
+.modal-footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .d-flex.justify-content-end {
+    justify-content: start !important;
+    margin-top: 1rem;
+  }
+  
+  .gap-2 > * {
+    margin-bottom: 0.5rem;
+  }
+  
+  .scheduler-container {
+    overflow-x: auto;
+  }
+  
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+}
+
