@@ -151,3 +151,25 @@
   }
 }
 
+/* DayPilot Event Color Overrides - Force text colors to be applied */
+.scheduler-container .daypilot_event_inner {
+  color: inherit !important;
+}
+
+.scheduler-container .daypilot_event {
+  color: inherit !important;
+}
+
+.scheduler-container .daypilot_event_text {
+  color: inherit !important;
+}
+
+.scheduler-container .daypilot_event_bar {
+  color: inherit !important;
+}
+
+/* Force all text elements within events to inherit color */
+.scheduler-container .daypilot_event * {
+  color: inherit !important;
+}
+

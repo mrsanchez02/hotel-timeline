@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { DayPilot } from "@daypilot/daypilot-lite-react";
-import { initialBookings } from '../data/constants';
 
 /**
  * Custom hook for managing reservations state and operations
  */
 export const useReservations = () => {
-  // State for bookings
-  const [bookings, setBookings] = useState(initialBookings);
+  // State for bookings - initialized empty, will be loaded from API
+  const [bookings, setBookings] = useState([]);
   
-  // State for date navigation - start in August 2025 where the reservation is
-  const [currentDate, setCurrentDate] = useState(new DayPilot.Date("2025-08-01"));
+  // State for date navigation - start with current date
+  const [currentDate, setCurrentDate] = useState(DayPilot.Date.today());
   
   // State for modal and form management
   const [selectedReservation, setSelectedReservation] = useState(null);
