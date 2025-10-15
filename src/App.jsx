@@ -332,6 +332,31 @@ function App() {
         
         args.data.toolTip = `${args.data.text} (${args.data.status || 'Reserva'})`;
       },
+      // Highlight weekend time headers
+      onBeforeTimeHeaderRender: args => {
+        const date = new DayPilot.Date(args.header.start);
+        const dayOfWeek = date.dayOfWeek(); // 0 = Sunday, 6 = Saturday
+        
+        if (dayOfWeek === 0 || dayOfWeek === 6) { // Sunday or Saturday
+          args.header.cssClass = "weekend-header";
+          // Preserve the original text/number and apply weekend styling
+          const dateText = date.toString("d"); // Get just the day number
+          args.header.html = dateText;
+          args.header.backColor = "#ffebee"; // Light red background
+          args.header.fontColor = "#c62828"; // Dark red text
+          args.header.fontBold = true;
+        }
+      },
+      // Highlight weekend cells
+      onBeforeCellRender: args => {
+        const date = new DayPilot.Date(args.cell.start);
+        const dayOfWeek = date.dayOfWeek(); // 0 = Sunday, 6 = Saturday
+        
+        if (dayOfWeek === 0 || dayOfWeek === 6) { // Sunday or Saturday
+          args.cell.cssClass = "weekend-cell";
+          args.cell.backColor = "#ffebee"; // Light red background matching headers
+        }
+      },
       // Customize the appearance of room headers
       onBeforeRowHeaderRender: args => {
         // Use remote data if available, otherwise fallback to local data

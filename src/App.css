@@ -173,3 +173,30 @@
   color: inherit !important;
 }
 
+/* Weekend highlighting styles */
+.scheduler-container .weekend-column {
+  background-color: #ffebee !important;
+}
+
+.scheduler-container .weekend-header {
+  background-color: #ffebee !important;
+  color: #c62828 !important;
+  font-weight: bold !important;
+}
+
+.scheduler-container .weekend-cell {
+  background-color: #ffebee !important;
+  border-right: 1px solid #ffcdd2;
+}
+
+/* Alternative weekend styling - light blue tint */
+.scheduler-container .weekend-column-alt {
+  background-color: #f0f8ff !important;
+}
+
+.scheduler-container .weekend-header-alt {
+  background-color: #e6f3ff !important;
+  color: #0056b3 !important;
+  font-weight: bold !important;
+}
+
