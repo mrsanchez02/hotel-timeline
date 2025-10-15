@@ -334,17 +334,29 @@ function App() {
       },
       // Highlight weekend time headers
       onBeforeTimeHeaderRender: args => {
-        const date = new DayPilot.Date(args.header.start);
-        const dayOfWeek = date.dayOfWeek(); // 0 = Sunday, 6 = Saturday
+        // Only apply weekend styling to day headers (level 1), not month headers (level 0)
+        // Level 0 = Month header, Level 1 = Day header
+        const isDayHeader = args.header.level === 1;
         
-        if (dayOfWeek === 0 || dayOfWeek === 6) { // Sunday or Saturday
-          args.header.cssClass = "weekend-header";
-          // Preserve the original text/number and apply weekend styling
-          const dateText = date.toString("d"); // Get just the day number
-          args.header.html = dateText;
-          args.header.backColor = "#ffebee"; // Light red background
-          args.header.fontColor = "#c62828"; // Dark red text
-          args.header.fontBold = true;
+        // Debug logging (remove after testing)
+        console.log('🔍 Header debug:', {
+          html: args.header.html,
+          start: args.header.start.toString(),
+          level: args.header.level,
+          isDayHeader
+        });
+        
+        if (isDayHeader) {
+          const date = new DayPilot.Date(args.header.start);
+          const dayOfWeek = date.dayOfWeek(); // 0 = Sunday, 6 = Saturday
+          
+          if (dayOfWeek === 0 || dayOfWeek === 6) { // Sunday or Saturday
+            console.log('✅ Applying weekend styling to day:', date.toString("d"));
+            args.header.cssClass = "weekend-header";
+            args.header.backColor = "#ffebee"; // Light red background
+            args.header.fontColor = "#c62828"; // Dark red text
+            args.header.fontBold = true;
+          }
         }
       },
       // Highlight weekend cells
